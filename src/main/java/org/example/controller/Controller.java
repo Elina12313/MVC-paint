@@ -28,9 +28,12 @@ public class Controller {
         model = new Model();
         MyShape shape = new MyShape(new Rectangle2D.Double());
         shape.setFb(new NoFill());
+
+        ActionDraw actionDraw = new ActionDraw(model, shape);
+
         model.setMyShape(shape);
 
-        panel = new MyPanel(this);
+        panel = new MyPanel(this, actionDraw);
         // TODO: 25.10.2024 Поменять наблюдатель на более современную реализацию
         model.addObserver(panel);
 
