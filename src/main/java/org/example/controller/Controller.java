@@ -17,7 +17,14 @@ public class Controller {
     private MyPanel panel;
     private Point2D firstPoint;
     private Point2D secondPoint;
-    public Controller() {
+    private static Controller instance;
+    public static Controller getInstance(){
+        if (instance == null){
+            instance = new Controller();
+        }
+        return instance;
+    }
+    private Controller() {
         model = new Model();
         MyShape shape = new MyShape(new Rectangle2D.Double());
         shape.setFb(new NoFill());
