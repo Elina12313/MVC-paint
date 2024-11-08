@@ -17,12 +17,12 @@ public class ActionDraw {
         this.shape = shape;
     }
     public  void  stretchShape (Point point){
-        firstPoint =  point;
+        secondPoint =  point;
         shape.setFrame(firstPoint, secondPoint);
         model.update();
     }
     public void createShape (Point point){
-        secondPoint =  point;
+        firstPoint =  point;
         shape = shape.clone();
         model.createCurrentShape(shape);
         model.update();
