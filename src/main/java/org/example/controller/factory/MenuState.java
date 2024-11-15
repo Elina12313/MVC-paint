@@ -41,4 +41,8 @@ public class MenuState {
     public void setActionDraw(ActionDraw actionDraw) {
         this.actionDraw = actionDraw;
     }
+    public  MenuState(){
+        shapeType = ShapeType.RECTANGULAR;
+        color = Color.BLUE;
+    }
 }

@@ -1,10 +1,13 @@
 package org.example.controller;
 
+import org.example.controller.factory.MenuState;
 import org.example.model.Model;
 import org.example.model.MyShape;
 import org.example.model.shape.fill.Fill;
+import org.example.model.shape.fill.NoFill;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
+import org.example.controller.factory.MenuState;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -19,6 +22,7 @@ public class Controller {
     private Point2D secondPoint;
     private MyShape simpleShape;
     private ActionDraw actionDraw;
+    private MenuState menuState;
     private static Controller instance;
     public static Controller getInstance(){
         if (instance == null){
@@ -27,20 +31,17 @@ public class Controller {
         return instance;
     }
     private Controller() {
-        model = new Model();
-        simpleShape = new MyShape(new Rectangle2D.Double());
+        menuState = new MenuState();
+        var shapeCreationFactory = ShapeCreationFactory.getInstance();
+        shapeCreationFactory.config(menuState);
 
-        Fill fill = new Fill();
-        fill.setColor(Color.yellow);
-
-        simpleShape.setFb(fill);
-
-         actionDraw = new ActionDraw(model, simpleShape);
-
+       model = new Model();
+       MyShape simpleShape = new MyShape(new Rectangle2D.Double());
+       simpleShape.setFb(new NoFill());
+        actionDraw = new ActionDraw(model, simpleShape);
         model.setMyShape(simpleShape);
-
         panel = new MyPanel(this, actionDraw);
-        // TODO: 25.10.2024 Поменять наблюдатель на более современную реализацию
+
         model.addObserver(panel);
 
         frame = new MyFrame();
@@ -54,14 +55,12 @@ public class Controller {
     }
 
     public void getPointOne(Point2D p){
-        actionDraw.createShape((Point) p);
-//        model.createCurrentShape(simpleShape.clone());
-//        firstPoint = p;
+     AppAction action = menuState.getAction();
+     action.mousePressed((Point)p);
     }
     public void getPointTwo(Point2D p){
-        actionDraw.stretchShape((Point) p);
-//        secondPoint = p;
-//        model.changeShape(firstPoint, secondPoint);
+        AppAction action = menuState.getAction();
+        action.mouseDragged((Point)p);
     }
 
     public void draw(Graphics2D g2) {

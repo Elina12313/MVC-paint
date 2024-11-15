@@ -7,7 +7,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.RectangularShape;
 
 public enum ShapeType {
-    RECTANGLE{
+    RECTANGULAR{
         @Override
         public RectangularShape createShape() {
             return new Rectangle2D.Double();
