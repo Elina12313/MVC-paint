@@ -8,6 +8,7 @@ import java.awt.geom.Point2D;
 
 public class ActionDraw {
     private Model model;
+
     private MyShape shape;
     private Point2D firstPoint;
     private Point2D secondPoint;
@@ -26,5 +27,8 @@ public class ActionDraw {
         shape = shape.clone();
         model.createCurrentShape(shape);
         model.update();
+    }
+    public MyShape getShape() {
+        return shape;
     }
 }

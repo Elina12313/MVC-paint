@@ -1,8 +1,7 @@
-package org.example.model.shape.factory;
+package org.example.controller.factory;
 
 
 
-import org.example.model.MyShape;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.RectangularShape;

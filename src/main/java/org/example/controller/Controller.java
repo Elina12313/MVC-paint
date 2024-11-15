@@ -45,6 +45,12 @@ public class Controller {
 
         frame = new MyFrame();
         frame.setPanel(panel);
+
+        MenuController menuController = MenuController.getInstance();
+        menuController.setActionDraw(actionDraw);
+        frame.setJMenuBar(menuController.createMenuBar());
+        frame.revalidate();
+
     }
 
     public void getPointOne(Point2D p){

@@ -24,7 +24,7 @@ public class MyShape implements  Cloneable{
 
     // TODO: 25.10.2024  Попробовать вызовы через разные конструкторы, затем переделать создание через фабрику
     public MyShape() {
-        color = Color.GREEN;
+        color = Color.BLACK;
         shape = new Rectangle2D.Double();
         fb = new Fill();
         fb.setColor(color);
@@ -67,4 +67,5 @@ public class MyShape implements  Cloneable{
         clone.fb.setShape(anotherShape);
         return  clone;
     }
+
 }
