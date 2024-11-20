@@ -1,6 +1,6 @@
 package org.example.controller.factory;
 
-import org.example.controller.ActionDraw;
+import org.example.controller.action.ActionDraw;
 
 import java.awt.*;
 

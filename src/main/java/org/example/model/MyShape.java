@@ -68,4 +68,8 @@ public class MyShape implements  Cloneable{
         return  clone;
     }
 
+    public Color getColor() {
+        return color;
+    }
+
 }

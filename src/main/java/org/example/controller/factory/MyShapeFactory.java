@@ -10,6 +10,21 @@ import java.awt.geom.RectangularShape;
 public class MyShapeFactory {
 
     private MenuState state;
+    public static MyShapeFactory instance;
+
+    public static  synchronized MyShapeFactory getInstance(){
+        if (instance == null){
+            instance = new MyShapeFactory();
+        }
+        return instance;
+    }
+    public MyShapeFactory(){
+
+    }
+    public void config (MenuState state) {
+        this.state = state;
+    }
+
     public MyShape createShape(){
         MyShape newShape = new MyShape();
         RectangularShape shape = state.getShapeType().createShape();
@@ -22,4 +37,5 @@ public class MyShapeFactory {
 
         return newShape;
     }
+
 }
