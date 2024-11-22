@@ -1,8 +1,13 @@
 package org.example.controller;
 
 import org.example.controller.action.ActionDraw;
+import org.example.controller.action.AppAction;
+import org.example.controller.action.ActionMove
 import org.example.controller.factory.MenuState;
 import org.example.controller.factory.ShapeType;
+import org.example.model.Model;
+import org.example.model.MyShape;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -10,7 +15,9 @@ public class MenuController {
     private static MenuController instance;
     private JMenuBar menuBar;
     private ActionDraw actionDraw;
-
+    private AppAction action;
+    private Model model;
+    private MyShape shape;
     private MenuState state;
 
     private MenuController(){
@@ -74,6 +81,21 @@ public class MenuController {
 
         return colorMenu;
     }
+    private JMenu createActionMenu() {
+        JMenu shapeMenu = new JMenu("Действие");
+        ButtonGroup group = new ButtonGroup();
+
+        JRadioButtonMenuItem square = new JRadioButtonMenuItem("Рисовать");
+        square.addActionListener(e -> state.setAction(new ActionDraw(model, shape)));
+        shapeMenu.add(square);
+        group.add(square);
+
+        JRadioButtonMenuItem ellipse = new JRadioButtonMenuItem("Двигать");
+        ellipse.addActionListener(e -> state.setAction(new ActionMove(model)));
+        shapeMenu.add(ellipse);
+        group.add(ellipse);
+        return shapeMenu;
+    }
 
     public void setActionDraw(ActionDraw actionDraw) {
         this.actionDraw = actionDraw;
@@ -81,4 +103,6 @@ public class MenuController {
     public void setState(MenuState state) {
         this.state = state;
     }
+
+
 }

@@ -13,6 +13,11 @@ public class ActionMove implements AppAction{
     private MyShape shape;
     private Point2D firstPoint;
     private Point2D secondPoint;
+
+    public ActionMove(Model model) {
+        this.model = model;
+    }
+
     @Override
     public void mousePressed(Point point) {
         firstPoint = point;
