@@ -25,8 +25,6 @@ public class Model extends Observable {
 
         currentShape.setFrame(x, y);
         update();
-//        this.setChanged();
-//        this.notifyObservers();
     }
 
     public void draw(Graphics2D g) {

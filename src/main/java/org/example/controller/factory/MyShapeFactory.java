@@ -29,12 +29,11 @@ public class MyShapeFactory {
         MyShape newShape = new MyShape();
         RectangularShape shape = state.getShapeType().createShape();
 
-        FillBehavior fillBehavior = state.isFill() ? new Fill() : new NoFill( );
+        FillBehavior fillBehavior = state.isFill()? new Fill() : new NoFill();
         fillBehavior.setShape(shape);
         fillBehavior.setColor(state.getColor());
 
         newShape.setFb(fillBehavior);
-
         return newShape;
     }
 

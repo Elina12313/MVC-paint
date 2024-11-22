@@ -18,12 +18,9 @@ import java.awt.geom.Rectangle2D;
 public class Controller {
     private Model model;
     private MyFrame frame;
-
     private MyPanel panel;
-
     private Point2D firstPoint;
     private Point2D secondPoint;
-
     private MyShape simpleShape;
     private ActionDraw actionDraw;
     private MenuState menuState;
@@ -36,39 +33,17 @@ public class Controller {
         return instance;
     }
     private Controller() {
-//        menuState = new MenuState();
-//        MyShapeFactory shapeCreationFactory = MyShapeFactory.getInstance();
-//        shapeCreationFactory.config(menuState);
-//
-//          model = new Model();
-////        menuState.setActionDraw(new ActionDraw(model, shapeCreationFactory));
-//
-//        MyShape simpleShape = new MyShape(new Rectangle2D.Double());
-//        simpleShape.setFb(new NoFill());
-//        actionDraw = new ActionDraw(model, simpleShape);
-//        model.setMyShape(simpleShape);
-//        model.addObserver(panel);
-//
-//        panel = new MyPanel(this, actionDraw);
-//
-//
-//        frame = new MyFrame();
-//        frame.setPanel(panel);
-//
-//        MenuController menuController = MenuController.getInstance();
-//        menuController.setActionDraw(actionDraw);
-//        menuController.setState(menuState);
-//        frame.setJMenuBar(menuController.createMenuBar());
         menuState = new MenuState();
         MyShapeFactory shapeCreator = MyShapeFactory.getInstance();
         shapeCreator.config(menuState);
 
         model = new Model();
 
-        MyShape shape = new MyShape(new Rectangle2D.Double()); // новое
+        MyShape shape = shapeCreator.createShape();
         shape.setFb(new NoFill()); //
 
-        menuState.setActionDraw(new ActionDraw(model, shape));
+        actionDraw = new ActionDraw(model, shape);
+        menuState.setActionDraw(actionDraw);
 
         panel = new MyPanel(this , actionDraw);
 
@@ -83,7 +58,6 @@ public class Controller {
         menuController.setState(menuState);
         frame.setJMenuBar(menuController.createMenuBar());
         frame.revalidate();
-
 
     }
 

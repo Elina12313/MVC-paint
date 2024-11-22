@@ -44,5 +44,6 @@ public class MenuState {
     public  MenuState(){
         shapeType = ShapeType.RECTANGULAR;
         color = Color.BLUE;
+        fill = false;
     }
 }

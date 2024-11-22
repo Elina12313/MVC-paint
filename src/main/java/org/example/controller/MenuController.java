@@ -34,10 +34,6 @@ public class MenuController {
 
         return menuBar;
     }
-//    public  enum ShapeType {
-//        RECTANGULAR, ELLIPSE
-//    }
-
     private JMenu createShapeMenu() {
 
         JMenu shapeMenu = new JMenu("Фигура");

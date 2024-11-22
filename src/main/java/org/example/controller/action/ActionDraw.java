@@ -7,7 +7,7 @@ import org.example.model.MyShape;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class ActionDraw {
+public class ActionDraw implements AppAction{
     private Model model;
     private MyShapeFactory myShapeFactory;
     private MyShape shape;
@@ -16,7 +16,7 @@ public class ActionDraw {
 
     public ActionDraw(Model model, MyShape shape) {
         this.model = model;
-        this.shape = shape; // сохраняем переданный MyShape
+        this.shape = shape;
         myShapeFactory = MyShapeFactory.getInstance();
     }
 
@@ -27,15 +27,11 @@ public class ActionDraw {
 
     }
     public void createShape (Point point){
-//        firstPoint =  point;
-//        shape = shape.clone();
-//        model.createCurrentShape(shape);
-//        model.update();
-
-        firstPoint = point;
-        shape = myShapeFactory.createShape();
-        model.createCurrentShape(shape.clone());
+        firstPoint =  point;
+        shape = shape.clone();
+        model.createCurrentShape(shape);
         model.update();
+
 
 
     }
@@ -55,5 +51,22 @@ public class ActionDraw {
         firstPoint = point;
         shape.setFrame(firstPoint, secondPoint);
         model.update();
+    }
+
+    @Override
+    public void mousePressed(Point point) {
+    firstPoint = point;
+    shape.setFrame(firstPoint, secondPoint);
+    model.update();
+
+    }
+
+    @Override
+    public void mouseDragged(Point point) {
+        secondPoint = point;
+        shape = myShapeFactory.createShape();
+        model.addCurrentShape(shape);
+        model.update();
+
     }
 }
