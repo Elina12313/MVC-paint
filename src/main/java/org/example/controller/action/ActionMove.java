@@ -23,7 +23,7 @@ public class ActionMove implements AppAction{
         firstPoint = point;
         shape = model.getShapeList()
                 .stream()
-                .filter(MyShape -> shape.getShape().contains(point))
+                .filter(shape -> shape.getShape().contains(point))
                 .findFirst()
                 .orElse(null);
         model.update();

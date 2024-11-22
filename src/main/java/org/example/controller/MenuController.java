@@ -1,8 +1,10 @@
 package org.example.controller;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.controller.action.ActionDraw;
+import org.example.controller.action.ActionMove;
 import org.example.controller.action.AppAction;
-import org.example.controller.action.ActionMove
 import org.example.controller.factory.MenuState;
 import org.example.controller.factory.ShapeType;
 import org.example.model.Model;
@@ -11,6 +13,8 @@ import org.example.model.MyShape;
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
+@Setter
 public class MenuController {
     private static MenuController instance;
     private JMenuBar menuBar;
@@ -19,6 +23,14 @@ public class MenuController {
     private Model model;
     private MyShape shape;
     private MenuState state;
+
+    public Model getModel() {
+        return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
 
     private MenuController(){
 
@@ -33,11 +45,15 @@ public class MenuController {
     }
     public JMenuBar createMenuBar(){
         JMenuBar menuBar = new JMenuBar();
-        JMenu shapeMenu = createShapeMenu();
-        JMenu colorMenu = createColorMenu();
 
+        JMenu shapeMenu = createShapeMenu();
         menuBar.add(shapeMenu);
+
+        JMenu colorMenu = createColorMenu();
         menuBar.add(colorMenu);
+
+        JMenu actionMenu = createActionMenu();
+        menuBar.add(actionMenu);
 
         return menuBar;
     }
@@ -45,7 +61,7 @@ public class MenuController {
 
         JMenu shapeMenu = new JMenu("Фигура");
         ButtonGroup group = new ButtonGroup();
-        //поменять на фабрику
+
         JRadioButtonMenuItem square = new JRadioButtonMenuItem("Прямоугольник");
         square.addActionListener(e -> {
             state.setShapeType(ShapeType.RECTANGULAR);

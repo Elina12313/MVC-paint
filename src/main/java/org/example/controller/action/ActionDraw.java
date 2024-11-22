@@ -19,42 +19,12 @@ public class ActionDraw implements AppAction{
         this.shape = shape;
         myShapeFactory = MyShapeFactory.getInstance();
     }
-
-    public  void  stretchShape (Point point){
-        secondPoint =  point;
-        shape.setFrame(firstPoint, secondPoint);
-        model.update();
-
-    }
-    public void createShape (Point point){
-        firstPoint =  point;
-        shape = shape.clone();
-        model.createCurrentShape(shape);
-        model.update();
-
-
-
-    }
  public MyShape getShape() {
     return shape;
   }
-//    @Override
-    public void mousePressed(Point2D point) {
-        secondPoint = point;
-        shape = myShapeFactory.createShape();
-        model.addCurrentShape(shape);
-        model.update();
-    }
-
-//    @Override
-    public void mouseDragged(Point2D point) {
-        firstPoint = point;
-        shape.setFrame(firstPoint, secondPoint);
-        model.update();
-    }
 
     @Override
-    public void mousePressed(Point point) {
+    public void mouseDragged(Point point) {
     firstPoint = point;
     shape.setFrame(firstPoint, secondPoint);
     model.update();
@@ -62,7 +32,7 @@ public class ActionDraw implements AppAction{
     }
 
     @Override
-    public void mouseDragged(Point point) {
+    public void mousePressed(Point point) {
         secondPoint = point;
         shape = myShapeFactory.createShape();
         model.addCurrentShape(shape);

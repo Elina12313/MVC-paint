@@ -1,22 +1,20 @@
 package org.example.view;
 
-import org.example.controller.action.ActionDraw;
 import org.example.controller.Controller;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JPanel;
 
 
 public class MyPanel extends JPanel implements Observer {
     private Controller controller;
 
-    public MyPanel(Controller controller, ActionDraw actionDraw) {
+    public MyPanel(Controller controller) {
         this.controller = controller;
         addMouseListener(new MouseAdapter() {
             @Override

@@ -1,6 +1,6 @@
 package org.example.controller.factory;
 
-import org.example.controller.action.ActionDraw;
+import org.example.controller.action.AppAction;
 
 import java.awt.*;
 
@@ -8,7 +8,7 @@ public class MenuState {
     private boolean fill;
     private Color color;
     private ShapeType shapeType;
-    private ActionDraw actionDraw;
+    private AppAction action;
 
     public boolean isFill() {
         return fill;
@@ -34,16 +34,17 @@ public class MenuState {
         this.shapeType = shapeType;
     }
 
-    public ActionDraw getActionDraw() {
-        return actionDraw;
-    }
-
-    public void setActionDraw(ActionDraw actionDraw) {
-        this.actionDraw = actionDraw;
-    }
     public  MenuState(){
         shapeType = ShapeType.RECTANGULAR;
         color = Color.BLUE;
         fill = false;
+    }
+
+    public void setAction(AppAction action) {
+        this.action = action;
+    }
+
+    public AppAction getAction() {
+        return action;
     }
 }

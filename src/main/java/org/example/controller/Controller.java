@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.controller.action.ActionDraw;
+import org.example.controller.action.AppAction;
 import org.example.controller.factory.MenuState;
 import org.example.controller.factory.MyShapeFactory;
 import org.example.model.Model;
@@ -10,9 +11,7 @@ import org.example.view.MyFrame;
 import org.example.view.MyPanel;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 
 // TODO: 24.10.2024 Сделать singleton класс
 public class Controller {
@@ -22,7 +21,7 @@ public class Controller {
     private Point2D firstPoint;
     private Point2D secondPoint;
     private MyShape simpleShape;
-    private ActionDraw actionDraw;
+
     private MenuState menuState;
     private static Controller instance;
 
@@ -42,10 +41,10 @@ public class Controller {
         MyShape shape = shapeCreator.createShape();
         shape.setFb(new NoFill()); //
 
-        actionDraw = new ActionDraw(model, shape);
-        menuState.setActionDraw(actionDraw);
 
-        panel = new MyPanel(this , actionDraw);
+        menuState.setAction(new ActionDraw(model , shape));
+
+        panel = new MyPanel(this);
 
         model.setMyShape(simpleShape);
         model.addObserver(panel);
@@ -54,19 +53,20 @@ public class Controller {
         frame.setPanel(panel);
 
         MenuController menuController = MenuController.getInstance();
-        menuController.setActionDraw(actionDraw);
+//        menuController.setActionDraw(actionDraw);
+        menuController.setModel(model);
         menuController.setState(menuState);
         frame.setJMenuBar(menuController.createMenuBar());
         frame.revalidate();
 
     }
 
-    public void getPointOne(Point2D p){
-        ActionDraw actionDraw1 = menuState.getActionDraw();
+    public void getPointOne(Point p){
+        AppAction actionDraw1 = menuState.getAction();
         actionDraw1.mousePressed(p);
     }
-    public void getPointTwo(Point2D p){
-        ActionDraw actionDraw1 = menuState.getActionDraw();
+    public void getPointTwo(Point p){
+        AppAction actionDraw1 = menuState.getAction();
         actionDraw1.mouseDragged(p);
     }
 
