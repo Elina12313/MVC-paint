@@ -1,4 +1,12 @@
 package org.example.view.menu;
+import org.example.controller.factory.MenuState;
 
-public class SwitchFill {
+public class SwitchFill implements AppCommand {
+    private boolean fill;
+
+    private MenuState menuState;
+    @Override
+    public void execute() {
+
+    }
 }
