@@ -9,6 +9,9 @@ import org.example.model.MyShape;
 import org.example.model.shape.fill.NoFill;
 import org.example.view.MyFrame;
 import org.example.view.MyPanel;
+import org.example.view.menu.MenuCreator;
+import org.example.controller.state.UndoMachine;
+
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -52,18 +55,19 @@ public class Controller {
         frame = new MyFrame();
         frame.setPanel(panel);
 
-        MenuController menuController = MenuController.getInstance();
-//        menuController.setActionDraw(actionDraw);
-        menuController.setModel(model);
-        menuController.setState(menuState);
-        frame.setJMenuBar(menuController.createMenuBar());
-        frame.revalidate();
+        MenuCreator menuCreator = MenuCreator.getInstance();
+        menuCreator.setState(menuState);
+        menuCreator.setModel(model);
+        frame.setJMenuBar(menuCreator.createMenuBar());
+        frame.add(menuCreator.createToolBar(), BorderLayout.NORTH);
 
     }
 
     public void getPointOne(Point p){
         AppAction actionDraw1 = menuState.getAction();
         actionDraw1.mousePressed(p);
+//        undoMachine.add(action.cloneAction());
+//        undoMachine.updateButtons();
     }
     public void getPointTwo(Point p){
         AppAction actionDraw1 = menuState.getAction();

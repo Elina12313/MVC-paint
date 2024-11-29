@@ -13,6 +13,14 @@ public class SwitchColor implements AppCommand{
     private MenuState menuState;
 
     private Color defaultColor;
+
+    public SwitchColor(JRadioButtonMenuItem radioButton, boolean useDefault, MenuState menuState, Color defaultColor) {
+        this.radioButton = radioButton;
+        this.useDefault = useDefault;
+        this.menuState = menuState;
+        this.defaultColor = defaultColor;
+    }
+
     @Override
     public void execute() {
         radioButton.setSelected(!useDefault);
