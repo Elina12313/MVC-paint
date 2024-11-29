@@ -13,6 +13,7 @@ public class ActionMove implements AppAction{
     private MyShape shape;
     private Point2D firstPoint;
     private Point2D secondPoint;
+    private MyShape drawableShape;
 
     public ActionMove(Model model) {
         this.model = model;
@@ -53,16 +54,23 @@ public class ActionMove implements AppAction{
     }
     @Override
     public void execute() {
-
+        model.addCurrentShape(drawableShape);
+        model.update();
     }
 
     @Override
     public void unexecute() {
+        drawableShape = model.getLastShape();
+        model.removeLastShape();
+        model.update();
 
     }
 
     @Override
     public AppAction cloneAction() {
-        return null;
+        ActionMove actionMove = new ActionMove(model);
+        actionMove.shape = shape.clone();
+        actionMove.drawableShape = drawableShape;
+        return actionMove;
     }
 }

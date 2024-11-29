@@ -1,11 +1,14 @@
 package org.example.controller.state;
 
 import org.example.controller.action.AppAction;
+import org.example.view.menu.CommandActionListener;
 
 import java.util.LinkedList;
 
 public class UndoMachine {
     private UndoRedoState undoRedoState;
+    CommandActionListener redo;
+    CommandActionListener undo;
 
     public UndoMachine() {
         LinkedList<AppAction> undoList = new LinkedList<>();
@@ -38,6 +41,8 @@ public class UndoMachine {
     }
 
     public void updateButtons() {
+        undo.setEnabled(isEnableUndo());
+        redo.setEnabled(isEnableRedo());
 
     }
 }

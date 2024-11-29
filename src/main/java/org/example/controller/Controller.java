@@ -24,9 +24,11 @@ public class Controller {
     private Point2D firstPoint;
     private Point2D secondPoint;
     private MyShape simpleShape;
+    private UndoMachine undoMachine;
 
     private MenuState menuState;
     private static Controller instance;
+
 
     public static Controller getInstance(){
         if (instance == null){
@@ -55,6 +57,8 @@ public class Controller {
         frame = new MyFrame();
         frame.setPanel(panel);
 
+        undoMachine = new UndoMachine();
+
         MenuCreator menuCreator = MenuCreator.getInstance();
         menuCreator.setState(menuState);
         menuCreator.setModel(model);
@@ -66,12 +70,15 @@ public class Controller {
     public void getPointOne(Point p){
         AppAction actionDraw1 = menuState.getAction();
         actionDraw1.mousePressed(p);
-//        undoMachine.add(action.cloneAction());
-//        undoMachine.updateButtons();
+        undoMachine.add(actionDraw1.cloneAction());
+        undoMachine.updateButtons();
     }
     public void getPointTwo(Point p){
         AppAction actionDraw1 = menuState.getAction();
         actionDraw1.mouseDragged(p);
+        undoMachine.add(actionDraw1.cloneAction());
+        undoMachine.updateButtons();
+
     }
 
     public void draw(Graphics2D g2) {

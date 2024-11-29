@@ -32,9 +32,6 @@ public class MyShape implements  Cloneable{
     public MyShape clone(){
         MyShape clone = new MyShape();
         clone.setFb(fb.clone());
-        RectangularShape anotherShape = (RectangularShape) fb.clone();
-        clone.setShape(anotherShape);
-        clone.fb.setShape(anotherShape);
         return  clone;
     }
 
