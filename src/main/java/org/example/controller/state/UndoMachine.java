@@ -25,13 +25,13 @@ public class UndoMachine {
     }
 
     public boolean isEnableUndo() {
-        return undoRedoState.getUndoActivityList().size() > 0;
+         return !undoRedoState.getUndoActivityList().isEmpty();
     }
 
 
     public boolean isEnableRedo() {
 
-        return undoRedoState.getRedoActivityList().size() > 0;
+        return !undoRedoState.getRedoActivityList().isEmpty();
     }
 
     public void add(AppAction action) {
@@ -45,6 +45,7 @@ public class UndoMachine {
     public void updateButtons() {
         undo.setEnabled(isEnableUndo());
         redo.setEnabled(isEnableRedo());
+
 
     }
 }

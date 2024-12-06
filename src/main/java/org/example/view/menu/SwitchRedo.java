@@ -3,9 +3,14 @@ import org.example.controller.state.UndoMachine;
 
 import lombok.AllArgsConstructor;
 
-@AllArgsConstructor
+
 public class SwitchRedo implements AppCommand {
     private UndoMachine undoMachine;
+
+    public SwitchRedo(UndoMachine undoMachine) {
+        this.undoMachine = undoMachine;
+    }
+
     @Override
     public void execute() {
         undoMachine.executeRedo();

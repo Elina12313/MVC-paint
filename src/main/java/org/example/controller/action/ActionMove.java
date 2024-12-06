@@ -54,15 +54,15 @@ public class ActionMove implements AppAction{
     }
     @Override
     public void execute() {
-        model.addCurrentShape(drawableShape);
-        model.update();
+//        model.addCurrentShape(drawableShape);
+//        model.update();
     }
 
     @Override
     public void unexecute() {
-        drawableShape = model.getLastShape();
-        model.removeLastShape();
-        model.update();
+//        drawableShape = model.getLastShape();
+//        model.removeLastShape();
+//        model.update();
 
     }
 
