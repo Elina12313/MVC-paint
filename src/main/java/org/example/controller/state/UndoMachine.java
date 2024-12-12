@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 public class UndoMachine {
     private UndoRedoState undoRedoState;
-    CommandActionListener redo;
-    CommandActionListener undo;
+    private CommandActionListener undo;
+    private CommandActionListener redo;
 
     public UndoMachine() {
         LinkedList<AppAction> undoList = new LinkedList<>();
@@ -25,27 +25,30 @@ public class UndoMachine {
     }
 
     public boolean isEnableUndo() {
-         return !undoRedoState.getUndoActivityList().isEmpty();
+        return !undoRedoState.getUndoActivityList().isEmpty();
     }
 
 
     public boolean isEnableRedo() {
-
         return !undoRedoState.getRedoActivityList().isEmpty();
     }
 
     public void add(AppAction action) {
         undoRedoState.clearHistory();
         undoRedoState.addAction(action);
-        undoRedoState = new StateDisableUndoDisableRedo(undoRedoState.getUndoActivityList(),undoRedoState.getRedoActivityList());
-        //TODO: Определить переход по состоянию
-        //undoRedoState = ;
+        undoRedoState = new StateEnableUndoDisableRedo(undoRedoState.getUndoActivityList(), undoRedoState.getRedoActivityList());
     }
-
     public void updateButtons() {
         undo.setEnabled(isEnableUndo());
         redo.setEnabled(isEnableRedo());
 
+    }
 
+    public void setUndo(CommandActionListener undo) {
+        this.undo = undo;
+    }
+
+    public void setRedo(CommandActionListener redo) {
+        this.redo = redo;
     }
 }

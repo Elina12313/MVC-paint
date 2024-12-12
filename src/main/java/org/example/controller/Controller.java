@@ -60,11 +60,14 @@ public class Controller {
         undoMachine1 = new UndoMachine();
 
         MenuCreator menuCreator = MenuCreator.getInstance();
+
         menuCreator.setState(menuState);
         menuCreator.setUndoMachine(undoMachine1);
         menuCreator.setModel(model);
+
         frame.setJMenuBar(menuCreator.createMenuBar());
         frame.add(menuCreator.createToolBar(), BorderLayout.NORTH);
+        frame.revalidate();
 
     }
 
